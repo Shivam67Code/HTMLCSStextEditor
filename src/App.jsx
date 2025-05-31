@@ -66,7 +66,9 @@ const NotebookCodeWriter = () => {
       fontFamily: 'Arial, sans-serif',
       backgroundColor: '#f5f5f5',
       minHeight: '100vh',
-      padding: '20px'
+      padding: '20px',
+      display: 'flex',
+      flexDirection: 'column'
     }}>
       
       <div style={{
@@ -75,7 +77,8 @@ const NotebookCodeWriter = () => {
         backgroundColor: 'white',
         borderRadius: '10px',
         padding: '20px',
-        boxShadow: '0 2px 10px rgba(0,0,0,0.1)'
+        boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
+        flex: '1 0 auto'
       }}>
         
         <h1 style={{
@@ -184,6 +187,30 @@ const NotebookCodeWriter = () => {
           </div>
         </div>
       </div>
+      
+      <footer style={{
+        textAlign: 'center',
+        padding: '20px 0',
+        marginTop: '30px',
+        borderTop: '1px solid #ddd',
+        color: '#666',
+        fontSize: '14px',
+        fontFamily: '"Architects Daughter", cursive',
+        width: '100%',
+        backgroundColor: 'white',
+        borderRadius: '10px',
+        boxShadow: '0 -2px 10px rgba(0,0,0,0.05)',
+        maxWidth: '1200px',
+        margin: '0 auto'
+      }}>
+        <p style={{ margin: '0' }}>
+          <span style={{ color: '#45b7d1', fontWeight: 'bold' }}>Code Notebook</span> - 
+          Created with ❤️ by <span style={{ color: '#ff6b6b', fontWeight: 'bold' }}>Shivam Karn</span>
+        </p>
+        <p style={{ margin: '5px 0 0 0', fontSize: '12px' }}>
+          Your creative space for HTML & CSS experimentation
+        </p>
+      </footer>
     </div>
   );
 };
