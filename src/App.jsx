@@ -10,6 +10,33 @@ const NotebookCodeWriter = () => {
     const text = e.target.value;
     const pos = e.target.selectionStart;
     
+    // HTML boilerplate with ! emmet
+    if (isHtml && key === 'Enter') {
+      const lineStart = text.lastIndexOf('\n', pos - 1) + 1;
+      const currentLine = text.slice(lineStart, pos);
+      
+      if (currentLine.trim() === '!') {
+        e.preventDefault();
+        const htmlBoilerplate = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+</html>`;
+        const newText = text.slice(0, lineStart) + htmlBoilerplate + text.slice(pos);
+        setHtml(newText);
+        // Position cursor inside the body tag
+        const cursorPos = newText.indexOf('</body>') - 2;
+        setTimeout(() => e.target.setSelectionRange(cursorPos, cursorPos), 0);
+        return;
+      }
+    }
+    
     // closing brackets and quotes 
     if (key === '{' || key === '(' || key === '[' || key === '"' || key === "'") {
       e.preventDefault();
@@ -17,7 +44,6 @@ const NotebookCodeWriter = () => {
       const newText = text.slice(0, pos) + key + pairs[key] + text.slice(pos);
       
       if (isHtml) {
-        
         setHtml(newText);
       }
       else {
@@ -125,7 +151,7 @@ const NotebookCodeWriter = () => {
                 placeholder="Write your HTML here..."
               />
               <small style={{ color: '#666' }}>
-                 Type &lt;div&gt; for auto-complete
+                Type &lt;div&gt; for auto-complete or <strong>!</strong> and press Enter for HTML boilerplate
               </small>
             </div>
 
